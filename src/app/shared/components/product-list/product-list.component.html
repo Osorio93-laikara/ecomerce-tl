@@ -1,0 +1,115 @@
+<div class="catalog-container">
+    <!-- TAB NAVIGATION -->
+    <nav class="tab-navigation">
+        <button *ngFor="let tab of tabs" [class.active]="activeTab === tab" (click)="selectTab(tab)">
+            {{ tab }}
+        </button>
+    </nav>
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+        <!-- CARD -->
+        <div class="product-card" *ngFor="let product of filteredProducts" (click)="goToDetail(product.id)">
+            <!-- IMAGE -->
+            <div class="image-wrapper">
+                <img [src]="product.image" [alt]="product.title">
+            </div>
+            <!-- INFO -->
+            <div class="product-info">
+                <span class="category">
+                    {{ product.category }}
+                </span>
+                <h3 class="product-name">
+                    {{ product.title }}
+                </h3>
+                <div class="price-container">
+                    <span class="current-price">
+                        ${{ product.price | number:'1.2-2' }}
+                    </span>
+                </div>
+                <!-- RATING -->
+                <div class="rating-container">
+                    <div class="stars">
+
+                        <!-- FULL STAR -->
+                        <i class="pi pi-star-fill full-star" *ngFor="let star of getStars(product.rating)">
+                        </i>
+
+                        <!-- EMPTY STAR -->
+                        <i class="pi pi-star empty-star" *ngFor="let empty of getEmptyStars(product.rating)">
+                        </i>
+
+                    </div>
+                    <span class="reviews">
+                        {{ product.rating }} / 5
+                    </span>
+                </div>
+            </div>
+            <!-- ACTIONS -->
+            <div class="card-actions">
+                <button (click)="$event.stopPropagation()">
+                    <i class="pi pi-heart"></i>
+                </button>
+                <button (click)="addToCart(product, $event)">
+                    <i class="pi pi-shopping-cart"></i>
+                </button>
+                <!-- <button (click)="$event.stopPropagation()">
+                    <i class="pi pi-sync"></i>
+                </button> -->
+                <!-- QUICK VIEW -->
+                <button (click)="openQuickView(product, $event)">
+                    <i class="pi pi-eye"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===================================
+ QUICK VIEW MODAL
+=================================== -->
+
+<div class="quick-view-overlay" *ngIf="quickViewProduct" (click)="closeQuickView()">
+    <div class="quick-view-modal" (click)="$event.stopPropagation()">
+        <!-- CLOSE -->
+        <button class="close-btn" (click)="closeQuickView(); $event.stopPropagation()">
+            ✕
+        </button>
+        <!-- IMAGE -->
+        <div class="quick-image">
+            <img [src]="quickViewProduct.image" [alt]="quickViewProduct.title">
+        </div>
+        <!-- CONTENT -->
+        <div class="quick-content">
+            <span class="quick-category">
+                {{ quickViewProduct.category }}
+            </span>
+            <h2>
+                {{ quickViewProduct.title }}
+            </h2>
+            <div class="rating">
+
+                <!-- FULL STAR -->
+                <i class="pi pi-star-fill full-star" *ngFor="let star of getStars(quickViewProduct.rating)">
+                </i>
+
+                <!-- EMPTY STAR -->
+                <i class="pi pi-star empty-star" *ngFor="let empty of getEmptyStars(quickViewProduct.rating)">
+                </i>
+
+                <span class="rating-text">
+                    {{ quickViewProduct.rating }} / 5
+                </span>
+
+            </div>
+            <div class="quick-price">
+                ${{ quickViewProduct.price }}
+            </div>
+            <p>
+                Premium product with modern design and high quality material.
+            </p>
+            <button class="view-detail-btn" (click)="goToDetail(quickViewProduct.id)">
+                View Full Detail
+            </button>
+        </div>
+    </div>
+</div>

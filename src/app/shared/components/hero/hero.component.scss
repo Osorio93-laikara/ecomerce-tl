@@ -1,0 +1,324 @@
+.hero-slider {
+  width: 100%;
+  height: 650px;
+  position: relative;
+  overflow: hidden;
+}
+
+swiper-container {
+  width: 100%;
+  height: 100%;
+
+  /* =========================
+     SWIPER GLOBAL
+  ========================= */
+
+  /* ukuran icon < > */
+  --swiper-navigation-size: 10px;
+
+  /* warna icon */
+  --swiper-navigation-color: #fff;
+}
+
+swiper-slide {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-content {
+  width: 100%;
+  height: 100%;
+
+  background-size: cover;
+  background-position: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(7, 72, 23, 0.78),
+      rgba(82, 101, 86, 0.35)
+    );
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 8%;
+}
+
+.content {
+  color: white;
+  max-width: 650px;
+
+  animation: fadeUp .8s ease;
+  z-index: 2;
+
+  h1 {
+    font-size: 72px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    font-weight: 800;
+
+    text-shadow:
+      0 10px 30px rgba(0,0,0,.35);
+  }
+
+  p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+
+    opacity: .92;
+
+    text-shadow:
+      0 5px 20px rgba(0,0,0,.25);
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 22px;
+
+  background:
+    rgba(255,255,255,.15);
+
+  border:
+    1px solid rgba(255,255,255,.2);
+
+  backdrop-filter: blur(10px);
+
+  border-radius: 999px;
+
+  margin-bottom: 25px;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  color: #fff;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+}
+
+button {
+  padding: 16px 34px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: white;
+  color: #111;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.2);
+
+  &:hover {
+    transform:
+      translateY(-4px)
+      scale(1.03);
+
+    background: #0b7a2d;
+    color: white;
+  }
+}
+
+/* =========================
+   SWIPER NAVIGATION
+========================= */
+
+swiper-container::part(button-prev),
+swiper-container::part(button-next) {
+
+  width: 40px;
+  height: 30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid rgba(255,255,255,.18);
+
+  border-radius: 10%;
+
+  color: white;
+
+  backdrop-filter: blur(10px);
+
+  transition: .35s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+}
+
+swiper-container::part(button-prev) {
+  left: 30px;
+}
+
+swiper-container::part(button-next) {
+  right: 30px;
+}
+
+swiper-container::part(button-prev):hover,
+swiper-container::part(button-next):hover {
+
+  background: white;
+  color: #111;
+
+  transform: scale(1.08);
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+swiper-container::part(pagination) {
+  bottom: 35px;
+}
+
+swiper-container::part(bullet) {
+
+  width: 12px;
+  height: 12px;
+
+  background:
+    rgba(255,255,255,.5);
+
+  opacity: 1;
+
+  transition: .35s ease;
+}
+
+swiper-container::part(bullet-active) {
+
+  width: 35px;
+
+  border-radius: 999px;
+
+  background: white;
+
+  box-shadow:
+    0 5px 15px rgba(255,255,255,.5);
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0);
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 992px) {
+
+  .hero-slider {
+    height: 550px;
+  }
+
+  .content {
+
+    h1 {
+      font-size: 52px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+  }
+
+}
+
+@media(max-width: 768px) {
+
+  .hero-slider {
+    height: 500px;
+  }
+
+  .overlay {
+    padding: 0 25px;
+  }
+
+  .content {
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+  }
+
+  button {
+    padding: 14px 26px;
+    font-size: 14px;
+  }
+
+  swiper-container::part(button-prev),
+  swiper-container::part(button-next) {
+    display: none;
+  }
+
+}
+
+@media(max-width: 480px) {
+
+  .hero-slider {
+    height: 420px;
+  }
+
+  .content {
+
+    h1 {
+      font-size: 30px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 10px 16px;
+  }
+
+}

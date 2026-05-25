@@ -1,0 +1,227 @@
+:host {
+    display: block;
+}
+
+/* =========================
+   PAGE
+========================= */
+.contact-page {
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+/* =========================
+   HERO
+========================= */
+.contact-hero {
+    position: relative;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    background: url('https://picsum.photos/1600/600?contact,office') center/cover no-repeat;
+
+    border-radius: 0 0 40px 40px;
+
+    color: white;
+    text-align: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+        rgba(30, 41, 59, 0.9),
+        rgba(104, 159, 56, 0.78));
+}
+
+.hero-content {
+    position: relative;
+    max-width: 800px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, .15);
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 999px;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    font-weight: 900;
+    margin-bottom: 12px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    opacity: .9;
+    line-height: 1.7;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.contact-container {
+    max-width: 1200px;
+    margin: 15px auto 60px;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+}
+
+/* =========================
+   INFO
+========================= */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.info-card {
+    background: white;
+    padding: 18px;
+    border-radius: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+    transition: .3s;
+
+    i {
+        font-size: 20px;
+        color: #2563eb;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #eff6ff;
+        border-radius: 12px;
+    }
+
+    h3 {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    p {
+        font-size: 14px;
+        color: #64748b;
+    }
+
+    &:hover {
+        transform: translateY(-4px);
+    }
+}
+
+/* =========================
+   FORM CARD
+========================= */
+.contact-card {
+    background: white;
+    border-radius: 24px;
+    padding: 28px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
+}
+
+.contact-card h2 {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   FORM
+========================= */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    font-size: 14px;
+    transition: .25s;
+
+    &:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, .1);
+    }
+}
+
+button {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+
+    border: none;
+    border-radius: 14px;
+
+    padding: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    transition: .3s;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 600px) {
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+        padding: 20px;
+    }
+}

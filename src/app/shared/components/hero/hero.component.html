@@ -1,0 +1,39 @@
+<div class="hero-slider">
+
+    <swiper-container slides-per-view="1" [loop]="slides.length > 3" autoplay-delay="4000" autoplay-disable-on-interaction="false" pagination="true" navigation="true">
+
+        <swiper-slide *ngFor="let slide of slides">
+
+            <div class="slide-content" [style.backgroundImage]="'url(' + slide.image + ')'">
+
+                <div class="overlay">
+
+                    <div class="content">
+
+                        <span class="badge">
+                            NEW COLLECTION
+                        </span>
+
+                        <h1>
+                            {{ slide.title }}
+                        </h1>
+
+                        <p>
+                            {{ slide.subtitle }}
+                        </p>
+
+                        <button>
+                            {{ slide.button }}
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </swiper-slide>
+
+    </swiper-container>
+
+</div>

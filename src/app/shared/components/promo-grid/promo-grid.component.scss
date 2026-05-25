@@ -1,0 +1,124 @@
+.promo-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    padding: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    grid-auto-flow: dense;
+}
+
+/* =========================
+   CARD BASE STYLE
+========================= */
+.promo-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 220px;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.promo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+.promo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px;
+    color: white;
+}
+
+.promo-overlay.text-right {
+    align-items: flex-end;
+    text-align: right;
+}
+
+/* =========================
+   TEXT STYLE
+========================= */
+.promo-overlay h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.promo-overlay p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 14px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.shop-now-btn {
+    background: #689f38;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.shop-now-btn:hover {
+    background: #558b2f;
+}
+
+/* =========================
+   SHOPEE GRID VARIANTS
+========================= */
+.normal {
+    grid-column: span 1;
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+.large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+    .promo-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .large,
+    .wide {
+        grid-column: span 2;
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .promo-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .large,
+    .wide {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}

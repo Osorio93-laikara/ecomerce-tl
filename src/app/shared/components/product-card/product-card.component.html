@@ -1,0 +1,110 @@
+<div class="product-card" *ngIf="product" (click)="goDetail()">
+
+    <!-- IMAGE -->
+    <div class="image-wrapper">
+
+        <img [src]="product.image" />
+
+        <!-- CATEGORY -->
+        <span class="badge">
+            {{ product.category }}
+        </span>
+
+        <!-- DISCOUNT -->
+        <span class="discount-badge">
+            -20%
+        </span>
+
+        <!-- WISHLIST -->
+        <button class="wishlist-btn" (click)="toggleWishlist($event)" [class.active]="isWishlisted">
+
+            <i class="pi" [ngClass]="
+        isWishlisted
+        ? 'pi-heart-fill'
+        : 'pi-heart'
+      ">
+            </i>
+
+        </button>
+
+        <!-- QUICK VIEW -->
+        <div class="quick-view">
+            Quick View
+        </div>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- TITLE -->
+        <h3>{{ product.title }}</h3>
+
+        <!-- META -->
+        <div class="meta">
+
+            <span class="size">
+                {{ product.size }}
+            </span>
+
+            <!-- STARS -->
+            <div class="rating-stars">
+
+                <ng-container *ngFor="let star of [1,2,3,4,5]">
+
+                    <!-- FULL -->
+                    <i *ngIf="product.rating >= star" class="pi pi-star-fill full">
+                    </i>
+
+                    <!-- HALF -->
+                    <i *ngIf="product.rating >= star - 0.5 && product.rating < star" class="pi pi-star-fill half">
+                    </i>
+
+                    <!-- EMPTY -->
+                    <i *ngIf="product.rating < star - 0.5" class="pi pi-star empty">
+                    </i>
+
+                </ng-container>
+
+            </div>
+
+        </div>
+
+        <!-- STOCK -->
+        <div class="stock-row">
+
+            <span class="stock" [class.low]="product.stock <= 5">
+
+                {{ product.stock <= 5 ? 'Low Stock' : 'In Stock' }} </span>
+
+                    <span class="sold">
+                        120 sold
+                    </span>
+
+        </div>
+
+        <!-- PRICE -->
+        <div class="price-wrapper">
+
+            <div class="price">
+                ${{ product.price }}
+            </div>
+
+            <div class="old-price">
+                ${{ product.price + 150 }}
+            </div>
+
+        </div>
+
+        <!-- BUTTON -->
+        <button class="cart-btn" (click)="addToCart($event)">
+
+            <i class="pi pi-shopping-cart"></i>
+
+            Add To Cart
+
+        </button>
+
+    </div>
+
+</div>

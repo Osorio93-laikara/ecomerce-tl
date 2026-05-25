@@ -1,0 +1,219 @@
+/* =========================
+   HEADER
+========================= */
+.header {
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #eee;
+  transition: .3s;
+}
+
+.header.scrolled {
+  height: 60px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+}
+
+/* =========================
+   LEFT
+========================= */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.logo {
+  font-weight: 900;
+  font-size: 22px;
+  color: #03ac0e;
+}
+
+/* =========================
+   MENU
+========================= */
+.menu {
+  display: flex;
+  gap: 18px;
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #444;
+    position: relative;
+    transition: .3s;
+
+    &:hover,
+    &.active {
+      color: #03ac0e;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #03ac0e;
+      transition: .3s;
+    }
+
+    &:hover::after,
+    &.active::after {
+      width: 100%;
+    }
+  }
+}
+
+/* =========================
+   SEARCH
+========================= */
+.search-box {
+  flex: 1;
+  margin: 0 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 999px;
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+  }
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: #f5f5f5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  position: relative;
+  transition: .3s;
+
+  &:hover {
+    background: #03ac0e;
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   MOBILE DRAWER
+========================= */
+.mobile-drawer {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  transform: translateY(-120%);
+  transition: .3s;
+  z-index: 9998;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+
+  a {
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .mobile-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 10px;
+
+    input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      outline: none;
+    }
+  }
+}
+
+.mobile-drawer.open {
+  transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .menu {
+    display: none;
+  }
+
+  .search-box {
+    display: none;
+  }
+
+  .mobile-only {
+    display: flex;
+  }
+}

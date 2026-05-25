@@ -1,0 +1,71 @@
+<!-- <app-header></app-header> -->
+
+<div class="cart-container">
+
+    <h1>Your Cart</h1>
+
+    <div *ngIf="cart.length === 0" class="empty">
+        🛒 Your cart is empty
+    </div>
+
+    <div *ngIf="cart.length > 0">
+
+        <div class="cart-item" *ngFor="let item of cart; let i = index">
+
+            <img [src]="item.product.image" />
+
+            <div class="info">
+
+                <h3>{{ item.product.title }}</h3>
+
+                <p>
+                    Size: {{ item.selectedSize }} |
+                    Color:
+                    <span class="color-dot"
+                        [style.background]="item.selectedColor || item.product.colors?.[0] || '#ccc'">
+                    </span>
+                </p>
+
+                <strong>${{ item.product.price }}</strong>
+
+            </div>
+
+            <div class="qty">
+
+                <button (click)="decrease(item, i)">-</button>
+
+                <span>{{ item.qty }}</span>
+
+                <button (click)="increase(item, i)">+</button>
+
+            </div>
+
+            <div class="subtotal">
+                ${{ item.product.price * item.qty }}
+            </div>
+
+            <button class="remove" (click)="remove(i)">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="cart-footer">
+
+            <h2>Total: ${{ getTotal() }}</h2>
+
+            <button class="clear" (click)="clear()">
+                Clear Cart
+            </button>
+
+            <button class="checkout" (click)="checkout()">
+                Checkout
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <app-footer></app-footer> -->

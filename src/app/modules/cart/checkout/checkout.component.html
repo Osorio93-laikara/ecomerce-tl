@@ -1,0 +1,54 @@
+
+
+<div class="checkout-container">
+
+  <!-- LEFT: FORM -->
+  <div class="checkout-form">
+
+    <h2>Checkout</h2>
+
+    <input type="text" placeholder="Full Name" [(ngModel)]="customer.name" />
+    <input type="text" placeholder="Phone Number" [(ngModel)]="customer.phone" />
+    <textarea placeholder="Address" [(ngModel)]="customer.address"></textarea>
+
+    <select [(ngModel)]="customer.payment">
+      <option value="cash">Cash on Delivery</option>
+      <option value="card">Credit Card</option>
+      <option value="transfer">Bank Transfer</option>
+    </select>
+
+  </div>
+
+  <!-- RIGHT: SUMMARY -->
+  <div class="checkout-summary">
+
+    <h3>Order Summary</h3>
+
+    <div class="item" *ngFor="let item of cart">
+
+      <img [src]="item.product.image" />
+
+      <div>
+        <p>{{ item.product.title }}</p>
+        <small>
+          {{ item.qty }} x ${{ item.product.price }}
+        </small>
+      </div>
+
+      <strong>
+        ${{ item.qty * item.product.price }}
+      </strong>
+
+    </div>
+
+    <hr />
+
+    <h2>Total: ${{ getTotal() }}</h2>
+
+    <button class="btn-pay" (click)="placeOrder()">
+      Place Order
+    </button>
+
+  </div>
+
+</div>

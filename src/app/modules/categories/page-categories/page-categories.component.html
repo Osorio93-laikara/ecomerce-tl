@@ -1,0 +1,101 @@
+<div class="categories-page">
+
+    <!-- HERO -->
+    <section class="hero-section">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <h1>
+                Hola Tuir Kategoria
+            </h1>
+
+            <p>
+                Descobre produtu premium iha kategória hotu-hotu ho estilo modernu, teknolojia foun liu, no oferta
+                eskluzivu sira.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- TOP INFO -->
+    <section class="top-info">
+
+        <div class="info-card">
+            <h3>{{ categories.length }}</h3>
+            <span>Total Kategoria</span>
+        </div>
+
+        <div class="info-card">
+            <h3>{{ products.length }}</h3>
+            <span>Total Produtu</span>
+        </div>
+
+        <div class="info-card">
+            <h3>24/7</h3>
+            <span>Suporta Online</span>
+        </div>
+
+    </section>
+
+    <!-- CATEGORY GRID -->
+    <section class="category-grid">
+
+        @for (category of categories; track category) {
+
+        <div class="category-card">
+
+            <!-- IMAGE -->
+            <div class="card-image">
+
+                <img [src]="getCategoryImage(category)" [alt]="category">
+
+                <div class="image-overlay"></div>
+
+                <div class="floating-badge">
+                    {{ getTotal(category) }} Items
+                </div>
+
+            </div>
+
+            <!-- CONTENT -->
+            <div class="card-content">
+
+                <div class="category-icon">
+                    🛍️
+                </div>
+
+                <h2>
+                    {{ category }}
+                </h2>
+
+                <p>
+                    Explore premium {{ category.toLowerCase() }}
+                    collections with exclusive offers and trending products.
+                </p>
+
+                <div class="bottom-row">
+
+                    <div class="product-count">
+                        {{ getTotal(category) }} Products
+                    </div>
+
+                    <a [routerLink]="['/products']" [queryParams]="{ category: category }" class="shop-btn">
+
+                        Shop Now →
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        }
+
+    </section>
+
+</div>

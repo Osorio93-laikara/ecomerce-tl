@@ -1,0 +1,360 @@
+:host {
+  display: block;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.catalog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navigasi Tab Bar */
+.tab-navigation {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 24px;
+  padding-left: 10px;
+}
+
+.tab-navigation button {
+  background: none;
+  border: none;
+  padding: 14px 0;
+  font-size: 0.95rem;
+  color: #888888;
+  cursor: pointer;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab-navigation button.active {
+  color: #558b2f;
+}
+
+.tab-navigation button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #558b2f;
+}
+
+/* Kisi-kisi Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* 5 Kolom sejajar sesuai gambar */
+  gap: 12px;
+}
+
+/* Frame Kartu */
+.product-card {
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Pembungkus Foto */
+.image-wrapper {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Deskripsi Info */
+.product-info {
+  padding: 0 16px 16px 16px;
+  text-align: center;
+}
+
+.category {
+  font-size: 0.75rem;
+  color: #999999;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  color: #0d0d0d;
+  margin: 0 0 14px 0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price-container {
+  height: 24px;
+  margin-bottom: 12px;
+}
+
+.current-price {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #d32f2f;
+  /* Warna merah harga default */
+}
+
+/* Bagian Rating */
+.rating-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  border-top: 1px dashed #f0f0f0;
+  padding-top: 10px;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.full-star {
+  color: #ffb300;
+  font-size: 13px;
+}
+
+.empty-star {
+  color: #d1d5db;
+  font-size: 13px;
+}
+
+.reviews {
+  color: #888888;
+}
+
+/* Deretan Tombol Menu Bawah */
+.card-actions {
+  display: flex;
+  border-top: 1px solid #f0f0f0;
+  background-color: #fafafa;
+}
+
+.card-actions button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 12px 0;
+  cursor: pointer;
+  color: #777777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+
+.card-actions button:not(:last-child) {
+  border-right: 1px solid #f0f0f0;
+}
+
+.card-actions button:hover {
+  background-color: #558b2f;
+  color: #ffffff;
+}
+
+/* Responsif untuk Layar Tablet dan HP */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tab-navigation {
+    gap: 20px;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tab-navigation {
+    gap: 16px;
+  }
+}
+
+/* ===================================
+ QUICK VIEW MODAL
+=================================== */
+
+.quick-view-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+
+  backdrop-filter: blur(4px);
+
+  animation: fadeIn .25s ease;
+}
+
+.quick-view-modal {
+  width: 900px;
+  max-width: 95%;
+
+  background: white;
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  position: relative;
+
+  animation: zoomIn .25s ease;
+}
+
+.quick-image {
+  background: #f5f5f5;
+  padding: 10px;
+}
+
+.quick-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5% 0 0 5%;
+  object-fit: contain;
+}
+
+.quick-content {
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quick-category {
+  color: #558b2f;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.quick-content h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.quick-rating {
+  margin-bottom: 15px;
+  color: #666;
+}
+
+.quick-price {
+  font-size: 32px;
+  font-weight: 800;
+  color: #558b2f;
+
+  margin-bottom: 20px;
+}
+
+.view-detail-btn {
+  margin-top: 25px;
+
+  height: 52px;
+  border: none;
+  border-radius: 14px;
+
+  background: #558b2f;
+  color: white;
+
+  font-weight: 700;
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.view-detail-btn:hover {
+  background: #63a237;
+  transform: translateY(-2px);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f1f1f1;
+
+  cursor: pointer;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .quick-view-modal {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-image {
+    height: 300px;
+  }
+
+}

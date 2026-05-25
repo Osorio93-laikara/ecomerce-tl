@@ -1,0 +1,319 @@
+<!-- <app-header></app-header> -->
+
+<!-- HERO -->
+<section class="product-hero" *ngIf="product">
+
+  <div class="hero-content">
+
+    <div class="breadcrumb">
+      <span>Home</span> /
+      <span>{{ product.category }}</span> /
+      <strong>{{ product.title }}</strong>
+    </div>
+
+    <h1>{{ product.title }}</h1>
+
+    <p>{{ product.description }}</p>
+
+    <div class="hero-meta">
+
+      <div class="stars">
+
+        <i class="pi pi-star-fill full-star" *ngFor="let star of getStars(product.rating)">
+        </i>
+
+        <i class="pi pi-star empty-star" *ngFor="let empty of getEmptyStars(product.rating)">
+        </i>
+
+      </div>
+
+      <span>{{ product.rating }}</span>
+
+      <span>
+        <i class="pi pi-box"></i>
+        Stock: {{ product.stock }}
+      </span>
+
+      <span>
+        <i class="pi pi-tag"></i>
+        {{ product.category }}
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- MAIN LAYOUT -->
+<div class="product-layout" *ngIf="product">
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <!-- PRODUCT DETAIL -->
+    <div class="product-detail">
+
+      <!-- LEFT -->
+      <div class="left-sticky">
+
+        <!-- IMAGE -->
+        <div class="zoom-container" (mousemove)="onMouseMove($event)" (mouseleave)="resetZoom()"
+          (touchstart)="onTouchMove($event)" (touchmove)="onTouchMove($event)" (touchend)="resetZoom()">
+
+          <!-- MAIN IMAGE -->
+          <img class="main-image" [src]="selectedImage || product.image" [alt]="product.title" />
+
+          <!-- CURSOR ZOOM -->
+          <div class="cursor-zoom" *ngIf="zoomActive" [ngStyle]="{
+                'left.px': cursorX,
+                'top.px': cursorY,
+                'background-image': 'url(' + (selectedImage || product.image) + ')',
+                'background-position': zoomPosition.backgroundPosition
+              }">
+          </div>
+
+          <!-- INDICATOR -->
+          <div class="zoom-indicator">
+
+            <i class="pi pi-search-plus"></i>
+
+            <span>Touch / Hover to zoom</span>
+
+          </div>
+
+        </div>
+
+        <!-- THUMBNAILS -->
+        <div class="thumbnail-list" *ngIf="product.images?.length">
+
+          <img *ngFor="let img of product.images" [src]="img" (click)="selectImage(img)"
+            [class.active]="selectedImage === img" />
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <h1>{{ product.title }}</h1>
+
+        <div class="info">
+
+          <span>
+            Category: {{ product.category }}
+          </span>
+
+          <div class="stars">
+
+            <i class="pi pi-star-fill full-star" *ngFor="let star of getStars(product.rating)">
+            </i>
+
+            <i class="pi pi-star empty-star" *ngFor="let empty of getEmptyStars(product.rating)">
+            </i>
+
+          </div>
+
+          <span>{{ product.rating }}</span>
+
+          <span>Stock: {{ product.stock }}</span>
+
+        </div>
+
+        <!-- COLOR -->
+        <div class="variants">
+
+          <label>Color</label>
+
+          <div class="color-options" *ngIf="product.colors?.length">
+
+            <button *ngFor="let c of product.colors" (click)="selectedColor = c" [class.active]="selectedColor === c"
+              [style.backgroundColor]="c" class="color-btn">
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- SIZE -->
+        <div class="variants">
+
+          <label>Size</label>
+
+          <div class="size-options">
+
+            <button *ngFor="let s of sizes" (click)="selectedSize = s" [class.active]="selectedSize === s">
+
+              {{ s }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- QTY -->
+        <div class="qty">
+
+          <button (click)="decreaseQty()" [disabled]="qty <= 1">
+            -
+          </button>
+
+          <span>{{ qty }}</span>
+
+          <button (click)="increaseQty()">
+            +
+          </button>
+
+        </div>
+
+        <!-- PRICE -->
+        <div class="price">
+          ${{ product.price }}
+        </div>
+
+        <!-- DESC -->
+        <p class="desc">
+          {{ product.description }}
+        </p>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+
+          <!-- ADD TO CART -->
+          <button class="icon-action btn-cart" (click)="addToCart()">
+            <i class="pi pi-shopping-cart"></i>
+          </button>
+
+          <!-- BUY NOW -->
+          <button class="icon-action btn-buy" (click)="buyNow()">
+            <i class="pi pi-bolt"></i>
+          </button>
+
+          <!-- SHARE -->
+          <div class="share-box">
+
+            <button class="icon-btn" (click)="shareWhatsApp()">
+              <i class="fa-brands fa-whatsapp"></i>
+            </button>
+
+            <button class="icon-btn" (click)="shareFacebook()">
+              <i class="fa-brands fa-facebook-f"></i>
+            </button>
+
+            <button class="icon-btn" (click)="shareProduct()">
+              <i class="pi pi-share-alt"></i>
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- TABS -->
+    <div class="product-tabs">
+
+      <button (click)="activeTab = 'description'" [class.active]="activeTab === 'description'">
+        Description
+      </button>
+
+      <button (click)="activeTab = 'additional'" [class.active]="activeTab === 'additional'">
+        Additional Information
+      </button>
+
+      <button (click)="activeTab = 'reviews'" [class.active]="activeTab === 'reviews'">
+        Reviews
+      </button>
+
+    </div>
+
+    <!-- TAB CONTENT -->
+    <div class="tab-content">
+
+      <!-- DESCRIPTION -->
+      <div *ngIf="activeTab === 'description'">
+
+        <p>{{ product.description }}</p>
+
+      </div>
+
+      <!-- ADDITIONAL -->
+      <div *ngIf="activeTab === 'additional'">
+
+        <ul>
+
+          <li>
+            <strong>Category:</strong>
+            {{ product.category }}
+          </li>
+
+          <li>
+            <strong>Stock:</strong>
+            {{ product.stock }}
+          </li>
+
+          <li>
+            <strong>Size:</strong>
+            {{ selectedSize }}
+          </li>
+
+          <li>
+            <strong>Color:</strong>
+            {{ selectedColor }}
+          </li>
+
+        </ul>
+
+      </div>
+
+      <!-- REVIEWS -->
+      <div *ngIf="activeTab === 'reviews'">
+
+        <div class="review-box">
+
+          <strong>John Doe</strong>
+
+          <p>
+            Great product! very recommended.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <h3>Related Products</h3>
+
+    <div class="related-list">
+
+      <div class="related-card" *ngFor="let item of relatedProducts" (click)="goToProduct(item.id)">
+
+        <img [src]="item.image" />
+
+        <div>
+
+          <p>{{ item.title }}</p>
+
+          <span>${{ item.price }}</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- <app-footer></app-footer> -->

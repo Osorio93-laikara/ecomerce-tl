@@ -1,0 +1,243 @@
+<div class="page-products">
+
+    <!-- HERO -->
+    <section class="hero-section">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                Lista Produtu Sira Ne'ebe Ami Iha
+            </span>
+
+            <h1>
+                Buka Ita Nia Produtu Favoritu!
+            </h1>
+
+            <p>
+                Produtu sira ne'ebe ami iha mak hodi atende ita Bo'ot Sira nia Necesidade loro-loron nain.
+            </p>
+
+            <div class="hero-search">
+                <input type="text" [(ngModel)]="searchTerm" (input)="onFilterChange()" placeholder="Buka Produtu..." />
+
+                <button (click)="onFilterChange()">Search</button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-box">
+
+                <!-- CATEGORY -->
+                <div class="filter-section">
+                    <div class="filter-title" (click)="showCategories = !showCategories">
+                        Categories
+                    </div>
+
+                    @if (showCategories) {
+                    <div class="filter-list">
+
+                        <!-- ALL -->
+                        <button class="category-btn" (click)="changeCategory('All')"
+                            [class.active-category]="selectedCategory==='All'">
+
+                            All
+
+                        </button>
+
+                        <!-- CATEGORY LIST -->
+                        @for (cat of categories; track cat) {
+
+                        <button class="category-btn" (click)="changeCategory(cat)"
+                            [class.active-category]="selectedCategory===cat">
+
+                            {{ cat }}
+
+                        </button>
+
+                        }
+
+                    </div>
+                    }
+                </div>
+
+                <hr />
+
+                <!-- PRICE -->
+                <div class="filter-section">
+                    <div class="filter-title" (click)="showPrice = !showPrice">
+                        Price Range
+                    </div>
+
+                    @if (showPrice) {
+                    <input type="range" min="0" max="3000" step="100" [(ngModel)]="maxPrice" (input)="onFilterChange()"
+                        class="range-input" />
+                    }
+                </div>
+
+                <hr />
+
+                <!-- SIZE -->
+                <div class="filter-section">
+                    <div class="filter-title" (click)="showSizes = !showSizes">
+                        Sizes
+                    </div>
+
+                    @if (showSizes) {
+                    <div class="filter-list">
+
+                        <button class="category-btn" (click)="selectedSize='All'; onFilterChange()"
+                            [class.active-category]="selectedSize==='All'">
+                            All Sizes
+                        </button>
+
+                        @for (size of sizes; track size) {
+                        <button class="category-btn" (click)="selectedSize=size; onFilterChange()"
+                            [class.active-category]="selectedSize===size">
+                            {{ size }}
+                        </button>
+                        }
+
+                    </div>
+                    }
+                </div>
+
+                <hr />
+
+                <!-- COLORS -->
+                <div class="filter-section">
+                    <div class="filter-title" (click)="showColors = !showColors">
+                        Colors
+                    </div>
+
+                    @if (showColors) {
+                    <div class="color-wrap">
+
+                        <button class="all-color-btn" (click)="selectedColor='All'; onFilterChange()"
+                            [class.active-color]="selectedColor==='All'">
+                            All
+                        </button>
+
+                        @for (color of colors; track color) {
+                        <button class="sidebar-color" (click)="selectedColor=color; onFilterChange()"
+                            [style.background]="color" [class.active-color-ring]="selectedColor===color">
+                        </button>
+                        }
+
+                    </div>
+                    }
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- PRODUCTS -->
+        <main class="products">
+
+            <!-- TOP BAR -->
+            <div class="topbar">
+
+                <input type="text" [(ngModel)]="searchTerm" (input)="onFilterChange()" placeholder="Search..."
+                    class="search-input" />
+
+                <div class="view-mode">
+
+                    <button class="view-btn" (click)="viewMode='4'" [class.active-view]="viewMode==='4'">
+                        <i class="fas fa-th"></i>
+                    </button>
+
+                    <button class="view-btn" (click)="viewMode='3'" [class.active-view]="viewMode==='3'">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+
+                    <button class="view-btn" (click)="viewMode='2'" [class.active-view]="viewMode==='2'">
+                        <i class="fas fa-grip-lines"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- GRID -->
+            <div class="product-grid" [ngClass]="{
+                    'grid-4': viewMode==='4',
+                    'grid-3': viewMode==='3',
+                    'grid-2': viewMode==='2'
+                 }">
+
+                @for (product of filteredProducts; track product.id) {
+
+                <div class="product-card">
+
+                    <div class="product-image">
+
+                        <span class="discount-badge" *ngIf="product.discount">
+                            -{{ product.discount }}%
+                        </span>
+
+                        <span class="category-tag">
+                            {{ product.category }}
+                        </span>
+
+                        <img [src]="product.image" />
+
+                        <!-- 🔥 ACTION BAR DI BAWAH IMAGE -->
+                        <div class="image-actions">
+
+                            <button class="wishlist-btn">
+                                <i class="fas fa-heart"></i>
+                            </button>
+
+                            <button class="quick-add-btn" (click)="addToCart(product, $event)">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+
+                            <button class="buy-btn" (click)="buyNow(product, $event)">
+                                <i class="fas fa-bolt"></i>
+                                Buy
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <h3 class="title">{{ product.title }}</h3>
+
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>{{ product.rating }}</span>
+                    </div>
+
+                    <div class="price">
+                        {{ product.price | currency:'USD' }}
+                    </div>
+
+                    <p class="desc">
+                        {{ product.description }}
+                    </p>
+
+                <button class="view-detail-btn" (click)="goToDetail(product.id, $event)">
+                    View Details
+                </button>
+
+                </div>
+
+                }
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>

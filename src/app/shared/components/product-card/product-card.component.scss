@@ -1,0 +1,297 @@
+.product-card {
+  background: #ffffff;
+  border-radius: 16px;
+  /* Lebih modern dibanding 24px yang terlalu membulat */
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s ease;
+  border: 1px solid #f1f5f9;
+
+  @media(min-width: 769px) {
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+
+      .image-wrapper img {
+        transform: scale(1.04);
+      }
+
+      .quick-view {
+        opacity: 1;
+        bottom: 14px;
+      }
+    }
+  }
+
+  /* ========================= IMAGE CONTAINER ========================= */
+  .image-wrapper {
+    position: relative;
+    overflow: hidden;
+    background-color: #f8fafc;
+    /* Latar belakang placeholder abu-abu netral */
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* Menggunakan contain agar gambar gawai/sepatu tidak terpotong */
+      padding: 12px;
+      transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .floating-actions {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .wishlist-btn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+      i {
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+
+        i {
+          color: #ef4444;
+        }
+      }
+
+      &.active {
+        background: #ef4444;
+
+        i {
+          color: #ffffff;
+        }
+      }
+    }
+
+    .discount-badge {
+      background: #f87171;
+      /* Merah pastel yang mewah, tidak terlalu menusuk mata */
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(248, 113, 113, 0.2);
+    }
+
+    .quick-view {
+      position: absolute;
+      left: 50%;
+      bottom: -40px;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.9);
+      /* Gelap premium transparan */
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0;
+      white-space: nowrap;
+      transition: all .25s ease;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* ========================= CONTENT AREA ========================= */
+  .content {
+    padding: 16px;
+
+    .top-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .category-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      align-items: center;
+    }
+
+    .full-star {
+      color: #ffb300;
+      font-size: 13px;
+    }
+
+    .empty-star {
+      color: #d1d5db;
+      font-size: 13px;
+    }
+
+    h3 {
+      margin: 0 0 12px 0;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f172a;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 42px;
+    }
+
+    .specs-stock-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .size-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .stock-status {
+      font-size: 11px;
+      font-weight: 600;
+      color: #10b981;
+      /* Hijau emerald modern */
+
+      &.low {
+        color: #f43f5e;
+      }
+    }
+
+    .sales-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 16px;
+    }
+
+    .price-wrapper {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      /* Harga utama hitam legam melambangkan brand premium */
+    }
+
+    .old-price {
+      font-size: 12px;
+      color: #94a3b8;
+      text-decoration: line-through;
+    }
+
+    .sold-count {
+      font-size: 11px;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    /* ========================= BUTTONS ========================= */
+    .cart-btn {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background: #0f172a;
+      /* Tombol Hitam gelap kontras tinggi */
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all .2s ease;
+
+      &:hover {
+        background: #03ac0e;
+        /* Berubah menjadi hijau daun segar hanya saat kursor menyentuhnya */
+        box-shadow: 0 4px 12px rgba(3, 172, 14, 0.2);
+      }
+
+      i {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/* ========================= MOBILE ADJUSTMENTS ========================= */
+@media(max-width: 768px) {
+  .product-card {
+    border-radius: 12px;
+
+    .image-wrapper {
+      height: 170px;
+
+      img {
+        padding: 8px;
+      }
+    }
+
+    .content {
+      padding: 12px;
+
+      h3 {
+        font-size: 14px;
+        min-height: 38px;
+        margin-bottom: 8px;
+      }
+
+      .price {
+        font-size: 18px;
+      }
+
+      .cart-btn {
+        height: 36px;
+        font-size: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<!-- <app-header></app-header> -->
+
+<app-hero [slides]="slides"></app-hero>
+
+<app-promo-grid></app-promo-grid>
+
+<!-- <div class="category-tabs-wrapper">
+
+  <div class="category-tabs">
+    <button *ngFor="let cat of categories" (click)="selectCategory(cat)" [class.active]="selectedCategory === cat">
+      <i [class]="getIcon(cat)"></i>
+      {{ cat }}
+    </button>
+    <div class="home-search">
+      <i class="pi pi-search"></i>
+      <input type="text" placeholder="Search products..." [(ngModel)]="searchTerm" (input)="applyFilter()" />
+    </div>
+    <div class="price-range">
+      <div class="price-top">
+        <span><i class="pi pi-wallet"></i> Price Range</span>
+        <strong>
+          ${{ minSelected }} - ${{ maxSelected }}
+        </strong>
+      </div>
+
+      <input type="range" min="0" max="3000" step="50" [(ngModel)]="minSelected" (input)="applyFilter()"
+        class="range-slider" [style.background]="getRangeBackground(minSelected)" />
+      <input type="range" min="0" max="3000" step="50" [(ngModel)]="maxSelected" (input)="applyFilter()"
+        class="range-slider" [style.background]="getRangeBackground(maxSelected)" />
+    </div>
+    <div class="sort-box">
+      <i class="pi pi-sort-alt"></i>
+      <select [(ngModel)]="sortBy" (change)="applyFilter()">
+        <option value="default">Default</option>
+        <option value="low">Lowest Price</option>
+        <option value="high">Highest Price</option>
+        <option value="rating">Top Rating</option>
+      </select>
+    </div>
+  </div>
+
+</div> -->
+
+<!-- <section class="products-section">
+
+  <div class="section-header">
+
+    <div class="section-title">
+      {{ selectedCategory }}
+    </div>
+
+    <div class="section-count">
+      {{ filteredProducts.length }} products
+    </div>
+
+  </div>
+
+  <div class="empty-state" *ngIf="!filteredProducts.length && !loading">
+    <i class="pi pi-search"></i>
+    <h3>No products found</h3>
+    <p>Try another keyword or filter</p>
+  </div>
+
+  <div class="products-grid" *ngIf="loading">
+    <div class="skeleton-card" *ngFor="let i of [1,2,3,4,5,6]"></div>
+  </div>
+
+  <div class="products-grid fade-switch" *ngIf="!loading">
+
+    <app-product-card *ngFor="let item of visibleProducts" [product]="item">
+    </app-product-card>
+
+  </div>
+
+  <div class="load-more" *ngIf="visibleProducts.length < filteredProducts.length">
+
+    <button (click)="loadMore()">
+      Load More
+    </button>
+
+  </div>
+
+</section> -->
+<app-product-list></app-product-list>
+<!-- <app-partnership></app-partnership> -->
+
+<!-- <app-footer></app-footer> -->

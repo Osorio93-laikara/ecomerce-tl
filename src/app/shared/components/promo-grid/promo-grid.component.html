@@ -1,0 +1,19 @@
+<div class="promo-grid-container" *ngIf="promoItems.length > 0">
+
+    <div *ngFor="let item of promoItems" class="promo-card" [ngClass]="item.gridClass"
+        [style.backgroundImage]="'url(' + item.product.image + ')'">
+
+        <div class="promo-overlay" [class.text-right]="item.alignRight">
+
+            <h2>{{ item.displayTitle }}</h2>
+
+            <p>{{ item.subtitle }}</p>
+
+            <button class="shop-now-btn" (click)="goToDetail(item.product.id, $event)">
+                Shop now
+            </button>
+        </div>
+
+    </div>
+
+</div>

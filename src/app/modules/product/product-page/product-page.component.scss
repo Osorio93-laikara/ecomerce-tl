@@ -1,0 +1,431 @@
+/* =========================
+   HERO
+========================= */
+
+.hero-section {
+    position: relative;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('https://picsum.photos/1600/700?products') center/cover no-repeat;
+    border-radius: 0 0 40px 40px;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            rgba(30, 41, 59, 0.9),
+            rgba(104, 159, 56, 0.78));
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    max-width: 700px;
+    padding: 0 20px;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(10px);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.hero-content h1 {
+    font-size: 42px;
+    font-weight: 800;
+}
+
+.hero-content p {
+    opacity: .9;
+}
+
+/* HERO SEARCH */
+.hero-search {
+    margin-top: 16px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.hero-search input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 260px;
+}
+
+.hero-search button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-weight: 700;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 280px;
+}
+
+.sidebar-box {
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+}
+
+.filter-section {
+    margin-bottom: 16px;
+}
+
+.filter-title {
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.category-btn {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    background: white;
+    cursor: pointer;
+}
+
+.active-category {
+    background: #2563eb;
+    color: white;
+}
+
+/* COLOR */
+.color-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sidebar-color {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px #ddd;
+    cursor: pointer;
+}
+
+.active-color-ring {
+    box-shadow: 0 0 0 3px #2563eb;
+}
+
+.all-color-btn {
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.active-color {
+    background: #2563eb;
+    color: white;
+}
+
+/* RANGE */
+.range-input {
+    width: 100%;
+    accent-color: #2563eb;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.search-input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* VIEW MODE */
+.view-mode {
+    display: flex;
+    gap: 8px;
+}
+
+.view-btn {
+    width: 42px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.active-view {
+    background: #2563eb;
+    color: white;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.product-grid {
+    display: grid;
+    gap: 16px;
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* =========================
+   PRODUCT CARD
+========================= */
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: white;
+    border-radius: 16px;
+    padding: 12px;
+    border: 1px solid #eee;
+    transition: .25s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+.product-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+/* ACTION BAR */
+.image-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0));
+
+    transform: translateY(100%);
+    transition: 0.3s ease;
+}
+
+/* SHOW ON HOVER IMAGE */
+.product-card:hover .image-actions {
+    transform: translateY(0);
+}
+
+/* WISHLIST */
+.wishlist-btn {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #ef4444;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* QUICK ADD */
+.quick-add-btn {
+    flex: 1;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: white;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* BUY BUTTON (FIXED NAME) */
+.buy-btn {
+    flex: 1;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #16a34a;
+    color: white;
+
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* hover effects */
+.quick-add-btn:hover {
+    background: #1d4ed8;
+}
+
+.buy-btn:hover {
+    background: #15803d;
+}
+
+.image-actions button {
+    transition: transform 0.2s ease;
+}
+
+.image-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.category-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    padding: 4px 10px;
+    border-radius: 999px;
+
+    background: rgba(49, 68, 30, 0.9);
+    color: #fff;
+
+    z-index: 1;
+}
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+
+    background: #ef4444;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    padding: 4px 8px;
+    border-radius: 999px;
+
+    z-index: 2;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    font-size: 13px;
+    color: #f59e0b;
+}
+
+.rating i {
+    color: #f59e0b;
+}
+
+.desc {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.price {
+    font-weight: 800;
+    color: #16a34a;
+}
+
+/* =========================
+   DETAIL BUTTON
+========================= */
+
+.view-detail-btn {
+    margin-top: auto;
+
+    border: none;
+    cursor: pointer;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: #0f172a;
+    color: white;
+
+    font-weight: 700;
+
+    transition: .25s ease;
+}
+
+.view-detail-btn:hover {
+    background: #111827;
+    transform: translateY(-2px);
+}

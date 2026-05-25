@@ -1,0 +1,63 @@
+<header class="header" [class.scrolled]="isScrolled">
+
+  <!-- LEFT -->
+  <div class="left">
+
+    <div class="logo">SHOP</div>
+
+    <!-- DESKTOP MENU -->
+    <nav class="menu">
+      <a routerLink="/" routerLinkActive="active">Home</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/categories" routerLinkActive="active">Categories</a>
+      <a routerLink="/deals" routerLinkActive="active">Deals</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </nav>
+
+  </div>
+
+  <!-- SEARCH (desktop only) -->
+  <div class="search-box">
+    <i class="pi pi-search"></i>
+    <input type="text" placeholder="Search products..." />
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+
+    <!-- MOBILE MENU BUTTON -->
+    <button class="icon-btn mobile-only" (click)="toggleMenu()">
+      <i class="pi pi-bars"></i>
+    </button>
+
+    <button class="icon-btn">
+      <i class="pi pi-heart"></i>
+    </button>
+
+    <button class="icon-btn cart" (click)="goToCart()">
+      <i class="pi pi-shopping-cart"></i>
+      <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    </button>
+
+    <button class="icon-btn">
+      <i class="pi pi-user"></i>
+    </button>
+
+  </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div class="mobile-drawer" [class.open]="menuOpen">
+
+  <a routerLink="/" (click)="toggleMenu()">Home</a>
+  <a routerLink="/products" (click)="toggleMenu()">Products</a>
+  <a routerLink="/categories" (click)="toggleMenu()">Categories</a>
+  <a routerLink="/deals" (click)="toggleMenu()">Deals</a>
+  <a routerLink="/contact" (click)="toggleMenu()">Contact</a>
+
+  <div class="mobile-search">
+    <i class="pi pi-search"></i>
+    <input type="text" placeholder="Search products..." />
+  </div>
+
+</div>

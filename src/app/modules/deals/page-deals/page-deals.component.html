@@ -1,0 +1,137 @@
+<div class="deals-page">
+
+    <!-- HERO -->
+    <section class="hero-section">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <!-- <span class="hero-badge">
+                Loron limitado to 2026-12-31
+            </span> -->
+
+            <h1>
+                Diskontu Bo'ot iha Matahari!
+            </h1>
+
+            <p>
+                Descobre diskontu eskluzivu sira disponível deit ba loron ne'ebe Sexta Dia 2026-12-31.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn">
+                    Shop Deals
+                </button>
+
+                <button class="secondary-btn" routerLink="/products">
+                   Haree produtu sira
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- TOP STATS -->
+    <section class="top-stats">
+
+        <div class="stat-card">
+            <h2>{{ deals.length }}</h2>
+            <span>Hot Deals</span>
+        </div>
+
+        <div class="stat-card">
+            <h2>70%</h2>
+            <span>Max Discount</span>
+        </div>
+
+        <div class="stat-card">
+            <h2>24/7</h2>
+            <span>Online Support</span>
+        </div>
+
+    </section>
+
+    <!-- PRODUCTS GRID -->
+    <section class="products-wrapper">
+
+        <div class="product-grid">
+
+            @for (item of deals; track item.id) {
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="discount-badge">
+                        SALE
+                    </span>
+
+                    <span class="category-tag">
+                        {{ item.category }}
+                    </span>
+
+                    <img [src]="item.image" [alt]="item.title" />
+
+                    <!-- ACTIONS -->
+                    <div class="image-actions">
+
+                        <button class="wishlist-btn">
+                            <i class="fas fa-heart"></i>
+                        </button>
+
+                        <button class="quick-add-btn" (click)="addToCart(item, $event)">
+                            <i class="fas fa-cart-plus"></i>
+                            Add
+                        </button>
+
+                        <button class="buy-btn" (click)="buyNow(item, $event)">
+                            <i class="fas fa-bolt"></i>
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <h3 class="title">
+                    {{ item.title }}
+                </h3>
+
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <span>{{ item.rating }}</span>
+                </div>
+
+                <div class="price-row">
+
+                    <div class="price">
+                        {{ item.price | currency:'USD' }}
+                    </div>
+
+                    <div class="old-price">
+                        {{ item.price * 1.4 | currency:'USD' }}
+                    </div>
+
+                </div>
+
+                <p class="desc">
+                    {{ item.description }}
+                </p>
+
+                <button class="view-detail-btn" (click)="goToDetail(item.id, $event)">
+                    View Details
+                </button>
+
+            </div>
+
+            }
+
+        </div>
+
+    </section>
+
+</div>
