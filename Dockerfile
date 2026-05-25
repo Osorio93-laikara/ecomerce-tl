@@ -5,5 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 80
-CMD ["npm", "run", "serve:ssr:e-commerce-demo"]
+CMD ["npm", "run", "serve:ssr:ecomerce-app"]
 
