@@ -149,7 +149,7 @@
                 <input type="text" [(ngModel)]="searchTerm" (input)="onFilterChange()" placeholder="Search..."
                     class="search-input" />
 
-                <div class="view-mode">
+                <div class="view-mode" *ngIf="!isMobile">
 
                     <button class="view-btn" (click)="viewMode='4'" [class.active-view]="viewMode==='4'">
                         <i class="fas fa-th"></i>

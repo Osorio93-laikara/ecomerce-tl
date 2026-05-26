@@ -1,6 +1,6 @@
 .hero-slider {
   width: 100%;
-  height: 650px;
+  height: 450px;
   position: relative;
   overflow: hidden;
 }
@@ -245,7 +245,7 @@ swiper-container::part(bullet-active) {
 @media(max-width: 992px) {
 
   .hero-slider {
-    height: 550px;
+    height: 400px;
   }
 
   .content {
@@ -265,7 +265,7 @@ swiper-container::part(bullet-active) {
 @media(max-width: 768px) {
 
   .hero-slider {
-    height: 500px;
+    height: 350px;
   }
 
   .overlay {
@@ -301,7 +301,7 @@ swiper-container::part(bullet-active) {
 @media(max-width: 480px) {
 
   .hero-slider {
-    height: 420px;
+    height: 320px;
   }
 
   .content {

@@ -1,39 +1,33 @@
 <div class="brand-wrapper">
 
-    <!-- TITLE -->
-    <div class="title">
-        <h2>Trusted Global Brands</h2>
-        <p>We work with world-class partners</p>
-    </div>
-
-    <!-- CAROUSEL -->
     <div class="carousel">
 
+        <!-- LEFT -->
         <button class="nav left" (click)="prev()">‹</button>
 
-        <div class="track" [style.transform]="getTransform()">
+        <!-- VIEWPORT -->
+        <div class="viewport" #viewport>
 
-            <div class="item" *ngFor="let b of brands; let i = index" [class.active]="i === currentIndex"
-                (click)="goTo(i)">
+            <div class="inner" #track>
 
-                <div class="logo-box">
-                    <img [src]="b.logo" [alt]="b.name" />
-                </div>
+                <a class="item" *ngFor="let b of brands; let i = index" [href]="b.link" target="_blank"
+                    rel="noopener noreferrer" (click)="setActive(i)">
 
-                <span>{{ b.name }}</span>
+                    <div class="logo-box">
+                        <img [src]="b.logo" [alt]="b.name" loading="lazy" />
+                    </div>
+
+                    <span class="brand-name">{{ b.name }}</span>
+
+                </a>
 
             </div>
 
         </div>
 
+        <!-- RIGHT -->
         <button class="nav right" (click)="next()">›</button>
 
-    </div>
-
-    <!-- DOTS -->
-    <div class="dots">
-        <span *ngFor="let b of brands; let i = index" (click)="goTo(i)" [class.active]="i === currentIndex">
-        </span>
     </div>
 
 </div>

@@ -5,6 +5,9 @@ import { ProductService } from '../../../core/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../../../core/services/cart.service';
 
+import { PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -35,14 +38,28 @@ export class ProductPageComponent implements OnInit {
 
   viewMode: '4' | '3' | '2' = '4';
 
+  isMobile = false;
+
   constructor(
     private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
     private cartService: CartService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
+
+    this.checkScreenSize();
+
+    // hanya jalan di browser
+    if (isPlatformBrowser(this.platformId)) {
+
+      window.addEventListener('resize', () => {
+        this.checkScreenSize();
+      });
+
+    }
 
     this.productService.getProducts().subscribe(data => {
 
@@ -250,4 +267,18 @@ export class ProductPageComponent implements OnInit {
 
   }
 
+  checkScreenSize(): void {
+
+    if (isPlatformBrowser(this.platformId)) {
+
+      this.isMobile = window.innerWidth <= 768;
+
+      // paksa mobile jadi 1 kolom
+      if (this.isMobile) {
+        this.viewMode = '2';
+      }
+
+    }
+
+  }
 }

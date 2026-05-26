@@ -34,8 +34,8 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg,
-        rgba(30, 41, 59, 0.9),
-        rgba(104, 159, 56, 0.78));
+            rgba(30, 41, 59, 0.9),
+            rgba(104, 159, 56, 0.78));
 }
 
 .hero-content {
@@ -210,6 +210,9 @@ button {
     .contact-container {
         grid-template-columns: 1fr;
     }
+    .contact-hero {
+        height: 280px;
+    }
 
     .hero-content h1 {
         font-size: 34px;
@@ -219,6 +222,10 @@ button {
 @media (max-width: 600px) {
     .row {
         grid-template-columns: 1fr;
+    }
+
+    .contact-hero {
+        height: 250px;
     }
 
     .contact-card {

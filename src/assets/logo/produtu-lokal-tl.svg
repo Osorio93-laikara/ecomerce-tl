@@ -1,0 +1,48 @@
+<svg width="520" height="160" viewBox="0 0 520 160" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="10%" stop-color="#ca1640" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#e6ad3b" stop-opacity="0.10"/>
+    </linearGradient>
+
+    <linearGradient id="icon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#03ac0e"/>
+      <stop offset="100%" stop-color="#1E40AF"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="75" cy="80" r="55" fill="url(#bg)"/>
+  <circle cx="75" cy="80" r="42" fill="url(#icon)"/>
+
+  <path d="M55 72H95L92 110H58L55 72Z" fill="#082f91"/>
+
+  <path d="M62 72C62 60 68 56 75 56C82 56 88 60 88 72"
+        stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+
+  <circle cx="75" cy="92" r="3.5" fill="#f83838"/>
+
+  <text x="150" y="75"
+        font-size="30"
+        font-weight="800"
+        font-family="Arial"
+        fill="#03ac0e">
+    Produtu Lokal
+  </text>
+
+  <text x="150" y="105"
+        font-size="16"
+        font-family="Arial"
+        fill="#00419d">
+    Merkadu iha Timor-Leste
+  </text>
+
+  <rect x="150" y="115" width="155" height="24" rx="12" fill="#bfc0c1"/>
+  <text x="160" y="132"
+        font-size="12"
+        font-family="Arial"
+        fill="#af1e1e">
+    Fatin • Fiar • Modernizadu
+  </text>
+
+</svg>

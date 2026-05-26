@@ -1,58 +1,66 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-partnership',
   templateUrl: './partnership.component.html',
   styleUrls: ['./partnership.component.scss']
 })
-export class PartnershipComponent implements OnInit, OnDestroy {
+export class PartnershipComponent implements AfterViewInit {
+
+  @ViewChild('viewport', { static: true }) viewport!: ElementRef;
+  @ViewChild('track', { static: true }) track!: ElementRef;
+
+  currentIndex = 0;
 
   brands = [
-    { name: 'Apple', logo: 'assets/brands/apple.png' },
-    { name: 'Samsung', logo: 'assets/brands/samsung.png' },
-    { name: 'Nike', logo: 'assets/brands/nike.png' },
-    { name: 'Adidas', logo: 'assets/brands/adidas.png' },
-    { name: 'Sony', logo: 'assets/brands/sony.png' },
-    { name: 'Xiaomi', logo: 'assets/brands/xiaomi.png' },
-    { name: 'HP', logo: 'assets/brands/hp.png' },
-    { name: 'Lenovo', logo: 'assets/brands/lenovo.png' }
+    { name: 'Apple', link: 'https://apple.com', logo: 'assets/brands/apple.png' },
+    { name: 'Samsung', link: 'https://samsung.com', logo: 'assets/brands/samsung.png' },
+    { name: 'Nike', link: 'https://nike.com', logo: 'assets/brands/nike.png' },
+    { name: 'Adidas', link: 'https://adidas.com', logo: 'assets/brands/adidas.png' },
+    { name: 'Sony', link: 'https://sony.com', logo: 'assets/brands/sony.png' },
+    { name: 'Xiaomi', link: 'https://xiaomi.com', logo: 'assets/brands/xiaomi.png' }
   ];
 
-  currentIndex: number = 0; // ✅ WAJIB ADA
+  constructor(private zone: NgZone) { }
 
-  intervalId: any;
-
-  ngOnInit(): void {
-    this.startAutoSlide();
+  ngAfterViewInit(): void {
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => this.center(), 0);
+    });
   }
 
-  ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+  next() {
+    this.currentIndex = (this.currentIndex + 1) % this.brands.length;
+    this.center();
   }
 
-  startAutoSlide(): void {
-    this.intervalId = setInterval(() => {
-      this.next();
-    }, 2500);
-  }
-
-  next(): void {
-    this.currentIndex =
-      (this.currentIndex + 1) % this.brands.length;
-  }
-
-  prev(): void {
+  prev() {
     this.currentIndex =
       (this.currentIndex - 1 + this.brands.length) % this.brands.length;
+    this.center();
   }
 
-  goTo(i: number): void {
+  setActive(i: number) {
     this.currentIndex = i;
+    this.center();
   }
 
-  getTransform(): string {
-    return `translateX(calc(-${this.currentIndex * 180}px + 50%))`;
+  center() {
+    const viewport = this.viewport.nativeElement;
+    const track = this.track.nativeElement;
+
+    const items = track.querySelectorAll('.item');
+    const active = items[this.currentIndex];
+
+    if (!active) return;
+
+    const viewportWidth = viewport.offsetWidth;
+
+    const itemCenter =
+      active.offsetLeft + active.offsetWidth / 2;
+
+    const scroll = itemCenter - viewportWidth / 2;
+
+    track.style.transform = `translateX(${-scroll}px)`;
   }
 }
